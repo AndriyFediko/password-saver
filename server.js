@@ -8,6 +8,8 @@ require("dotenv").config();
 const app = express();
 const PORT = 3000;
 
+app.use(express.static('public'));
+
 mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.d6gdrbw.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -19,6 +21,10 @@ mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.
     console.error("error"+err);
 })
 
+
+app.get("/", (req, res)=>{
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 
 app.listen(PORT, () => {

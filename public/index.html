@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save your password</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="homePage">
+            <div class="addServicePasswordContainer">
+                <form id="addPasswordForm">
+                    <h2>Fill the filds and save your password</h2>
+                    <input type="text" id="serviceName" placeholder="Servise name" required>
+                    <input type="password" id="servicePassword" placeholder="Service password" required>
+                    <button type="submit">Add</button>
+                </form>
+                <div class="chartContainer">
+                    <h2>Often visited</h2>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
