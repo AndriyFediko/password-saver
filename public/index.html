@@ -7,6 +7,8 @@
     <title>Save your password</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js' integrity='sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==' crossorigin='anonymous'></script>
 </head>
 <body>
     <div class="wrap">
@@ -21,6 +23,43 @@
                 <div class="chartContainer">
                     <h2>Often visited</h2>
                     <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <div class="filterContainer">
+                <label for="serviceFilterSelect"><i class="fa-solid fa-filter" style="color: #ffffff;"></i></label>
+                <select id="serviceFilterSelect">
+                    <option selected value="MostVisited">Most visited</option>
+                    <option value="a-z">Alphabet a-z</option>
+                    <option value="z-a">Alphabet z-a</option>
+                </select>
+            </div>
+            <div class="servisesContainer">
+                <div class="serviceCard">
+                    <div class="serviceCardLeft">
+                        <div class="serviceLogo">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/023/986/704/small/youtube-logo-youtube-logo-transparent-youtube-icon-transparent-free-free-png.png" alt="logo">
+                        </div>
+                        <div class="serviceName">YouTube</div>
+                        <div class="servicePassword">*******</div>
+                    </div>
+                    <div class="serviceCardRight">
+                        <div class="edit serviceCardControlOption"><i class="fa-solid fa-pen" style="color: #ffffff;"></i></div>
+                        <div class="setVisibility serviceCardControlOption">
+                            <i id="hiden" class="fa-sharp fa-solid fa-eye-slash" style="color: #ffffff;"></i>
+                            <i id="visible" class="fa-solid fa-eye" style="color: #ffffff;"></i>
+                        </div>
+                        <div class="copy serviceCardControlOption"><i class="fa-solid fa-copy" style="color: #ffffff;"></i></div>
+                        <div class="delete serviceCardControlOption"><i class="fa-solid fa-trash" style="color: #db0000;"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="editCardPopUpBg">
+                <div class="editCardPopUp">
+                    <div class="closeContainer"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></div>
+                    <h2>Edit</h2>
+                    <input placeholder="Service name" class="serviceNameEditInp">
+                    <input placeholder="Service password" class="servicePasswordEditInp">
+                    <button id="save">Save</button>
                 </div>
             </div>
         </div>

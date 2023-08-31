@@ -1,3 +1,5 @@
+$(".editCardPopUpBg").hide(0);
+
 const ctx = document.getElementById('myChart');
 
 const data = {
