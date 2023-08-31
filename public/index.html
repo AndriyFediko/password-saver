@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js' integrity='sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==' crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.js' integrity='sha512-ePtegHW811NTnZd0Er1UxtBb8dizKEdSzANYy/UhxM40FC2yCWwb1CQrj03BPbrs6XdUkcHuyVn9Xq9q0Lm34g==' crossorigin='anonymous'></script>
 </head>
 <body>
     <div class="wrap">
@@ -17,11 +18,12 @@
                 <form id="addPasswordForm">
                     <h2>Fill the filds and save your password</h2>
                     <input type="text" id="serviceName" placeholder="Servise name" required>
-                    <input type="password" id="servicePassword" placeholder="Service password" required>
+                    <input type="text" id="servicePassword" placeholder="Service password" required>
+                    <i id="generateServicePassword" class="fa-solid fa-key" style="color: rgb(0, 183, 255);"></i>
                     <button type="submit">Add</button>
                 </form>
                 <div class="chartContainer">
-                    <h2>Often visited</h2>
+                    <h2>Visits statistic</h2>
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
@@ -34,34 +36,37 @@
                 </select>
             </div>
             <div class="servisesContainer">
-                <div class="serviceCard">
+
+                <div class="serviceCard" id="c0">
                     <div class="serviceCardLeft">
                         <div class="serviceLogo">
                             <img src="https://static.vecteezy.com/system/resources/thumbnails/023/986/704/small/youtube-logo-youtube-logo-transparent-youtube-icon-transparent-free-free-png.png" alt="logo">
                         </div>
                         <div class="serviceName">YouTube</div>
-                        <div class="servicePassword">*******</div>
+                        <div class="servicePassword">************</div>
                     </div>
                     <div class="serviceCardRight">
                         <div class="edit serviceCardControlOption"><i class="fa-solid fa-pen" style="color: #ffffff;"></i></div>
                         <div class="setVisibility serviceCardControlOption">
-                            <i id="hiden" class="fa-sharp fa-solid fa-eye-slash" style="color: #ffffff;"></i>
-                            <i id="visible" class="fa-solid fa-eye" style="color: #ffffff;"></i>
+                            <i class="fa-sharp fa-solid fa-eye-slash hiden" style="color: #ffffff;"></i>
+                            <i class="fa-solid fa-eye visible" style="color: #ffffff;"></i>
                         </div>
-                        <div class="copy serviceCardControlOption"><i class="fa-solid fa-copy" style="color: #ffffff;"></i></div>
+                        <div data-clipboard-text="Tf0[Ah0%Ne2=" class="copy serviceCardControlOption"><i class="fa-solid fa-copy" style="color: #ffffff;"></i></div>
                         <div class="delete serviceCardControlOption"><i class="fa-solid fa-trash" style="color: #db0000;"></i></div>
                     </div>
                 </div>
+
             </div>
             <div class="editCardPopUpBg">
                 <div class="editCardPopUp">
-                    <div class="closeContainer"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></div>
+                    <div class="closeContainer"><i id="closeEditPage" class="fa-solid fa-xmark" style="color: #ffffff;"></i></div>
                     <h2>Edit</h2>
                     <input placeholder="Service name" class="serviceNameEditInp">
                     <input placeholder="Service password" class="servicePasswordEditInp">
                     <button id="save">Save</button>
                 </div>
             </div>
+            <div class="copyAlert">Copied to clickboard!</div>
         </div>
     </div>
     <script src="./main.js"></script>
