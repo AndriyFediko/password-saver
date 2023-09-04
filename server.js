@@ -30,6 +30,19 @@ app.get("/register", (req, res)=>{
     res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
+app.post("/addUser", (req, res)=>{
+    const {userLogin, userPassword} = req.body;
+    console.log(userLogin);
+    console.log(userPassword);
+    // try{
+    //     console.log(userLogin);
+    //     console.log(userPassword);
+    // } catch(error){
+    //     console.log("Error");
+    //     res.status(500).json({error: "an error"})
+    // }
+});
+
 app.listen(PORT, () => {
     console.log("server works on port " + PORT);
 });

@@ -50,7 +50,7 @@ function generatePassword() {
     const symbols = "@#%^&()_+~|[]></-=";
     const passwordLength = 12;
 
-    while(password.length < passwordLength){
+    while (password.length < passwordLength) {
         password += upperCase[Math.floor(Math.random() * upperCase.length)];
         password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
         password += numbers[Math.floor(Math.random() * numbers.length)];
@@ -60,47 +60,46 @@ function generatePassword() {
     return password;
 }
 
-function hidePassword(password){
+function hidePassword(password) {
     let hidenPassword = "";
-    for(let i = 0; i<password.length; i++){
+    for (let i = 0; i < password.length; i++) {
         hidenPassword += "*";
     }
     return hidenPassword;
 }
 
-$("#generatePassword").click( () => {
+$("#generatePassword").click(() => {
     $("#userPassword").val(generatePassword());
 });
 
-$("#generateServicePassword").click( () => {
+$("#generateServicePassword").click(() => {
     $("#servicePassword").val(generatePassword());
 });
 
-$(".edit").click( () => {
+$(".edit").click(() => {
     $(".editCardPopUpBg").show(0);
 });
 
-$("#closeEditPage").click( () => {
+$("#closeEditPage").click(() => {
     $(".editCardPopUpBg").hide(0);
 });
 
 let servicesData = [{
     serviceName: "YouTube",
     servicePassword: "Tf0[Ah0%Ne2=",
-},
-];
+}, ];
 
 $(".visible").hide(0);
 
-$(".setVisibility").click( (e) => {
+$(".setVisibility").click((e) => {
     let closestCard = e.target.closest(".serviceCard");
     let closestCardId = (closestCard.id).slice(1);
     $(`#c${closestCardId} .servicePassword`).toggleClass("servicePasswordVisible");
-    if($(`#c${closestCardId} .servicePassword`).hasClass("servicePasswordVisible")){
+    if ($(`#c${closestCardId} .servicePassword`).hasClass("servicePasswordVisible")) {
         $(`#c${closestCardId} .hiden`).hide(0);
         $(`#c${closestCardId} .visible`).show(0);
         $(`#c${closestCardId} .servicePassword`).text(servicesData[closestCardId].servicePassword);
-    } else{
+    } else {
         $(`#c${closestCardId} .hiden`).show(0);
         $(`#c${closestCardId} .visible`).hide(0);
         $(`#c${closestCardId} .servicePassword`).text(hidePassword(servicesData[closestCardId].servicePassword));
@@ -109,17 +108,48 @@ $(".setVisibility").click( (e) => {
 
 new ClipboardJS('.copy');
 $(".copyAlert").hide(0);
-$(".copy").click( () => {
+$(".copy").click(() => {
     $(".copyAlert").slideDown(200);
-    setTimeout(()=>{
+    setTimeout(() => {
         $(".copyAlert").slideUp(200);
     }, 2000)
-})
-
-$("#registerForm").submit( (event) => {
-    event.preventDefault();
 });
 
-$("#signInForm").submit( (event) => {
+let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+$(".avatar").css("background-color", "#" + randomColor);
+
+$("#logOutBtn").click(() => {
+    window.location.href = "/register";
+});
+
+$("#registerForm").submit((event) => {
+    event.preventDefault();
+
+    const formData = new FormData(registerForm);
+    const userLogin = formData.get("userLogin");
+    const userPassword = formData.get("userPassword");
+    const data = {
+        userLogin,
+        userPassword,
+    }
+    console.log(data)
+    axios.post("/addUser", data)
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((err) => {
+            console.log("Error" + err);
+            alert("Error" + err);
+        })
+    // axios.post("/addUser", data)
+    // .then((response) => {
+    //     console.log(response)
+    // })
+    // .catch((error) => {
+    //     console.log(error)
+    // })
+});
+
+$("#signInForm").submit((event) => {
     event.preventDefault();
 });

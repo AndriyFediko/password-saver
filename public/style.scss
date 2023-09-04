@@ -23,7 +23,49 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 80px;
+        header{
+            width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 50px 0;
+            .headerLeft{
+                display: flex;
+                align-items: center;
+                color: white;
+                .avatar{
+                    width: 50px;
+                    height: 50px;
+                    background-color: #bbbbbb;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    font-size: 2.5em;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    i{
+                        margin-top: 10px;
+                    }
+                }
+                .headerUserLogin{
+                    margin-left: 15px;
+                    font-size: 1.3em;
+                }
+            }
+            .headerRight{
+                button{
+                    padding: 0 15px;
+                    height: 40px;
+                    color: rgb(219, 0, 0);
+                    background-color: #333;
+                    border: 2px solid rgb(219, 0, 0);
+                    outline: none;
+                    font-size: 1.1em;
+                    border-radius: 8px;
+                    cursor: pointer;
+                }
+            }
+        }
         .addServicePasswordContainer{
             display: flex;
             align-items: center;
@@ -111,7 +153,7 @@ body{
         }
         .servisesContainer{
             width: 800px;
-            height: 47vh;
+            height: 38vh;
             overflow-y: auto;
             padding-right: 15px;
             margin-top: 15px;
