@@ -122,7 +122,6 @@ $("#logOutBtn").click(() => {
     window.location.href = "/register";
 });
 
-let savedServices = [];
 
 $("#registerForm").submit((event) => {
     event.preventDefault();
@@ -133,7 +132,6 @@ $("#registerForm").submit((event) => {
     const data = {
         userLogin,
         userPassword,
-        savedServices,
     }
     console.log(data)
     axios.post("/addUser", data)
@@ -145,13 +143,6 @@ $("#registerForm").submit((event) => {
             console.log("Error" + err);
             alert("Error" + err);
         })
-    // axios.post("/addUser", data)
-    // .then((response) => {
-    //     console.log(response)
-    // })
-    // .catch((error) => {
-    //     console.log(error)
-    // })
 });
 
 $("#signInForm").submit((event) => {

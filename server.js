@@ -19,15 +19,14 @@ mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.
     console.log('connected to mongoDB');
 })
 .catch((err)=>{
-    console.error("error"+err);
+    console.error("error "+err);
 })
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
 const User = mongoose.model("user", {
     login: String,
     password: String,
-    // savedServices: Array,
 });
 
 app.get("/", (req, res)=>{
@@ -39,15 +38,13 @@ app.get("/register", (req, res)=>{
 });
 
 app.post("/addUser", async (req, res)=>{
-    const {userLogin, userPassword, savedServices} = req.body;
     try{
-        console.log(userLogin);
-        console.log(userPassword);
-        console.log(savedServices)
+        const {userLogin, userPassword} = req.body;
 
-        const user = new User({login, password});
-
+        const user = new User({userLogin, userPassword});
         await user.save();
+
+        res.status(200).json({message: "data saved"});
     } catch(error){
         console.log("Error");
         res.status(500).json({error: "an error"})
