@@ -11,7 +11,7 @@ const PORT = 3000;
 app.use(express.static('public'));
 app.use(express.json())
 
-mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.d6gdrbw.mongodb.net/?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.lluvybx.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -27,7 +27,7 @@ const db = mongoose.connection;
 const User = mongoose.model("user", {
     login: String,
     password: String,
-    savedServices: Array,
+    // savedServices: Array,
 });
 
 app.get("/", (req, res)=>{
@@ -45,8 +45,8 @@ app.post("/addUser", async (req, res)=>{
         console.log(userPassword);
         console.log(savedServices)
 
-        const user = new User({login, password, savedServices});
-        // const user1 = await User.find({login: login});
+        const user = new User({login, password});
+
         await user.save();
     } catch(error){
         console.log("Error");
