@@ -9,6 +9,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.static('public'));
+app.use(express.json())
 
 mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.d6gdrbw.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -21,6 +22,13 @@ mongoose.connect(`mongodb+srv://andiifedirko:${process.env.DBPASSWORD}@cluster0.
     console.error("error"+err);
 })
 
+const db = mongoose.connection;
+
+const User = mongoose.model("user", {
+    login: String,
+    password: String,
+    savedServices: Array,
+});
 
 app.get("/", (req, res)=>{
     res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -30,17 +38,20 @@ app.get("/register", (req, res)=>{
     res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
-app.post("/addUser", (req, res)=>{
-    const {userLogin, userPassword} = req.body;
-    console.log(userLogin);
-    console.log(userPassword);
-    // try{
-    //     console.log(userLogin);
-    //     console.log(userPassword);
-    // } catch(error){
-    //     console.log("Error");
-    //     res.status(500).json({error: "an error"})
-    // }
+app.post("/addUser", async (req, res)=>{
+    const {userLogin, userPassword, savedServices} = req.body;
+    try{
+        console.log(userLogin);
+        console.log(userPassword);
+        console.log(savedServices)
+
+        const user = new User({login, password, savedServices});
+        // const user1 = await User.find({login: login});
+        await user.save();
+    } catch(error){
+        console.log("Error");
+        res.status(500).json({error: "an error"})
+    }
 });
 
 app.listen(PORT, () => {
