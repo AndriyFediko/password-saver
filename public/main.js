@@ -119,7 +119,7 @@ let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 $(".avatar").css("background-color", "#" + randomColor);
 
 $("#logOutBtn").click(() => {
-    window.location.href = "/register";
+    window.location.href = "/";
 });
 
 
@@ -140,6 +140,7 @@ $("#registerForm").submit((event) => {
         .then((response) => {
             console.log(response.data);
             alert("saved")
+            window.location.href = "/home";
         })
         .catch((err) => {
             console.log("Error" + err);

@@ -6,7 +6,7 @@ const mongodb = require('mongodb');
 require("dotenv").config();
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 app.use(express.static('public'));
 app.use(express.json())
@@ -31,11 +31,11 @@ const User = mongoose.model("user", {
 });
 
 app.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
-app.get("/register", (req, res)=>{
-    res.sendFile(path.join(__dirname, "public", "register.html"));
+app.get("/home", (req, res)=>{
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.post("/addUser", async (req, res)=>{
