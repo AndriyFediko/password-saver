@@ -129,9 +129,11 @@ $("#registerForm").submit((event) => {
     const formData = new FormData(registerForm);
     const userLogin = formData.get("userLogin");
     const userPassword = formData.get("userPassword");
+    let userServices = [];
     const data = {
         userLogin,
         userPassword,
+        userServices,
     }
     console.log(data)
     axios.post("/addUser", data)
