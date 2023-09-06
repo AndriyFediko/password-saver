@@ -53,6 +53,24 @@ app.post("/addUser", async (req, res)=>{
     }
 });
 
+app.post("/update", async (req, res) => {
+    try{
+        const {serviceName, servicePassword, userLogin} = req.body;
+
+        console.log(serviceName);
+        console.log(servicePassword);
+        console.log(userLogin);
+
+        const user1 = await User.find({userLogin: userLogin});
+
+
+        res.status(200).json({error: "an error"});
+    } catch(error){
+        console.log("error");
+        res.status(500).json({error: "an error"});
+    }
+});
+
 app.listen(PORT, () => {
     console.log("server works on port " + PORT);
 });

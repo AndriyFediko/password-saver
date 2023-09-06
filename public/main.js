@@ -129,6 +129,7 @@ $("#registerForm").submit((event) => {
     const formData = new FormData(registerForm);
     const userLogin = formData.get("userLogin");
     const userPassword = formData.get("userPassword");
+    localStorage.userPassword = userPassword;
     let userServices = [];
     const data = {
         userLogin,
@@ -146,6 +147,31 @@ $("#registerForm").submit((event) => {
             console.log("Error" + err);
             alert("Error" + err);
         })
+});
+
+$("#addPasswordForm").submit( (event) => {
+    event.preventDefault();
+    const formData = new FormData(addPasswordForm);
+
+    const serviceName = formData.get("serviceName");
+    const servicePassword = formData.get("servicePassword");
+    const userLogin = localStorage.userLogin;
+    
+    const data = {
+        serviceName,
+        servicePassword,
+        userLogin,
+    }
+    
+    axios.post("/update", data)
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+
+    console.log(data);
 });
 
 $("#signInForm").submit((event) => {
